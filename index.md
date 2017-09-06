@@ -327,3 +327,68 @@ Promise.race([promiseA, promiseB]).then(result => {
   console.log(result)
 })
 ```
+
+## Generator
+
+### 概念
+
+Generator函数是一个状态机，封装了多个内部状态，并且返回一个遍历器对象
+
+### 示例
+
+```javascript
+function* numGenerator() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+const gen = numGenerator()
+
+console.log(gen.next())
+console.log(gen.next())
+console.log(gen.next())
+console.log(gen.next())
+```
+
+输出:
+
+```javascript
+{value: 1, done: false}
+{value: 2, done: false}
+{value: 3, done: true}
+{value: undefined, done: true}
+```
+
+调用了四次next，第一个next使用Generator函数内部代码开始执行，直到遇到第一个yield为止，返回{value: 1, done: false}，其中的value为yield后面的值，done表示操作还没有完成
+
+最后一次调用表示完成了，并且已经没有返回值，所以返回{value: undefined, done: true}
+
+所以generator生成了一系列的值，这也就是他名字的由来
+
+### yield
+
+yield只能用在Generator函数里面，用在普通函数里会出错，如：
+
+```javascript
+(function () {
+  yield 'hello'
+})()
+```
+
+```javascript
+function* fibonacci() {
+  let [prev, curr] = [0, 1]
+  while (true) {
+    [pref, curr] = [curr, prev + curr]
+    yield curr
+  }
+}
+
+for (const n of fibonacci()) {
+  if (n > 1000) {
+    break
+  }
+  console.log(n)
+}
+```
