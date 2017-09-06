@@ -1,3 +1,6 @@
+---
+title: JavaScript现代化异步
+---
 # JavaScript现代化异步
 
 ## 异步
@@ -54,7 +57,7 @@ a()
 假设一下函数都是异步函数，函数的调用顺序是什么
 
 ```javascript
-funcA(() => {
+funcA(() => {
   funcB(() => {
     funcC(() => {
       funcD()
@@ -88,5 +91,5 @@ setTimeout(name => {
 ```
 
 #### “门”
-#### 竞态
+#### 竞态
 ####
