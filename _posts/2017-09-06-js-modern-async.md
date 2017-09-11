@@ -1,5 +1,4 @@
 ---
-layout: default
 title: JS现代化异步
 ---
 
